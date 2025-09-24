@@ -18,7 +18,7 @@ public class PaymentController {
     @GetMapping("/payments")
     //  http://localhost:8080/payments
     public List<Payment> payments() {
-        String sql = "SELECT UDATE, CMMCODE, PRICE FROM cmsask WHERE udate = '20250710' ORDER BY udate, cmmcode";
+        String sql = "Mosaic";
         return jdbc.query(sql, (rs, rowNum) -> 
             new Payment(
                 rs.getString("UDATE"),
