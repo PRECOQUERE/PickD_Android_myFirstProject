@@ -16,8 +16,15 @@ public class PaymentController {
     }
 
     @GetMapping("/payments")
-    public List<Map<String, Object>> payments() {
-        String sql = "SELECT udate, cmmcode, aispway, price, paydate FROM cmsask WHERE udate = '20250710' ORDER BY udate, cmmcode";
-        return jdbc.queryForList(sql);
+    //  http://localhost:8080/payments
+    public List<Payment> payments() {
+        String sql = "SELECT UDATE, CMMCODE, PRICE FROM cmsask WHERE udate = '20250710' ORDER BY udate, cmmcode";
+        return jdbc.query(sql, (rs, rowNum) -> 
+            new Payment(
+                rs.getString("UDATE"),
+                rs.getString("CMMCODE"),
+                rs.getInt("PRICE")
+            )
+        );
     }
 }
